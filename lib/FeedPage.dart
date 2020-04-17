@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news/ApiService.dart';
+import 'package:news/FeedListPage.dart';
 import 'package:news/bean/Category.dart';
 
 class FeedPage extends StatefulWidget {
@@ -39,7 +40,7 @@ class _FeedPageState extends State<FeedPage> {
                   ),
                   body: TabBarView(
                     children: snapshot.data.map((item) {
-                      return Text(item.name);
+                      return FeedListPage(id:item.id);
                     }).toList(),
                   ),
                 ),
@@ -49,7 +50,9 @@ class _FeedPageState extends State<FeedPage> {
             }
 
             // By default, show a loading spinner.
-            return CircularProgressIndicator();
+            return Center(
+              child: CircularProgressIndicator(),
+            );
           }),
     );
   }

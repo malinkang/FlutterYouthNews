@@ -1,11 +1,10 @@
-import 'package:news/bean/BaseResponse.dart';
-
-class Category extends BaseResponse{
+class Category  {
+  String id;
   String name;
 
-  Category(this.name);
+  Category({this.id, this.name});
 
   factory Category.fromJson(Map<String, dynamic> json) {
-    return Category(json['name']);
+    return Category(id: json['id'], name: json['name']);
   }
 }
