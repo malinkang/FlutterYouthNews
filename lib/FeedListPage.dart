@@ -94,11 +94,14 @@ class _FeedListPageState extends State<FeedListPage> {
                     return Container(
                       margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+//                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start, //标题居左
                         children: <Widget>[
                           //标题
                           Text(
                             snapshot.data[index].title,
+                            softWrap: true,
+                            maxLines: 2,
                             style: TextStyle(
                                 fontSize: 16, color: Color(0xff323232)),
                             overflow: TextOverflow.ellipsis,
