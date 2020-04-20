@@ -26,7 +26,8 @@ dependencies:
   cupertino_icons: ^0.1.2
   dio: ^3.0.9
   crypto: ^2.1.3
-
+  webview_flutter: 0.3.3+1
+  flutter_webview_plugin: 0.3.0+2
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -53,6 +54,12 @@ flutter:
     - assets/images/ic_tab_task_normal.webp
     - assets/images/ic_tab_short_video_active.webp
     - assets/images/ic_tab_short_video_normal.webp
+    - assets/images/video_nav_bg.png
+    - assets/images/video_icon.webp
+    - assets/images/play1_icon.webp
+    - assets/images/play1_icon.webp
+    - assets/images/comments_icon.webp
+    - assets/images/video_more_icon.webp
 
   # To add assets to your application, add an assets section, like this:
   # assets:

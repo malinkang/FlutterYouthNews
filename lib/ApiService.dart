@@ -34,6 +34,15 @@ class ApiService {
     }
   }
 
+  Future<List<Category>> getVideoCategory() async {
+    var response = await dio.get("v3/user/getvideocate.json");
+    if (response.statusCode == 200) {
+      return CategroyResponse.fromJson(response.data).list;
+    } else {
+      throw Exception('Failed to load album');
+    }
+  }
+
   //获取文章
   Future<List<Article>> getArticle(String id, int isRefresh, String behotTime,
       String oid, String step, String videoId) async {

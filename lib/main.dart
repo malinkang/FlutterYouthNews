@@ -1,20 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:news/ApiService.dart';
-import 'package:news/FeedPage.dart';
+import 'package:news/home.dart';
 import 'package:news/LittleVideoPage.dart';
 import 'package:news/ProfilePage.dart';
 import 'package:news/TaskPage.dart';
-import 'package:news/VideoPage.dart';
+import 'package:news/video.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(MyApp());
+  SystemUiOverlayStyle systemUiOverlayStyle = SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.dark);
+  SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
+
         // This is the theme of your application.
         //
         // Try running your application with "flutter run". You'll see the
@@ -24,20 +32,14 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(),
     );
   }
 }
 
-
 class MyHomePage extends StatefulWidget {
-
-
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
   // how it looks.
@@ -46,8 +48,6 @@ class MyHomePage extends StatefulWidget {
   // case the title) provided by the parent (in this case the App widget) and
   // used by the build method of the State. Fields in a Widget subclass are
   // always marked "final".
-
-  final String title;
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -60,8 +60,8 @@ class _Item {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<Widget> pages =[
-    FeedPage(),
+  List<Widget> pages = [
+    HomePage(),
     VideoPage(),
     ShortVideoPage(),
     TaskPage(),
@@ -94,18 +94,15 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    print("initState");
-    var list= itemNames.map((item)=> {
-      BottomNavigationBarItem(
-          title: Text(item.name,style: TextStyle(fontSize: 10.0)),
-          icon: Image.asset(item.normalIcon),
-          activeIcon: Image.asset(item.activeIcon)
-      )
-    }).toList();
-    print("list = $list");
+    var list = itemNames
+        .map((item) => {
+              BottomNavigationBarItem(
+                  title: Text(item.name, style: TextStyle(fontSize: 10.0)),
+                  icon: Image.asset(item.normalIcon),
+                  activeIcon: Image.asset(item.activeIcon))
+            })
+        .toList();
   }
-
-
 
   void _onItemTapped(int index) {
     setState(() {
@@ -115,7 +112,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -133,13 +129,12 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: itemNames.map((item) =>
-          BottomNavigationBarItem(
-              title: Text(item.name,style: TextStyle(fontSize: 12.0)),
-              icon: Image.asset(item.normalIcon),
-              activeIcon: Image.asset(item.activeIcon)
-          )
-        ).toList(),
+        items: itemNames
+            .map((item) => BottomNavigationBarItem(
+                title: Text(item.name, style: TextStyle(fontSize: 12.0)),
+                icon: Image.asset(item.normalIcon),
+                activeIcon: Image.asset(item.activeIcon)))
+            .toList(),
         type: BottomNavigationBarType.fixed,
         currentIndex: _selectedIndex,
         selectedItemColor: Color(0xff31c27c),
