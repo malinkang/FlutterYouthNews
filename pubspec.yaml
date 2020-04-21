@@ -60,6 +60,7 @@ flutter:
     - assets/images/play1_icon.webp
     - assets/images/comments_icon.webp
     - assets/images/video_more_icon.webp
+    - assets/images/ic_home_video_play.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:news/ApiService.dart';
 import 'package:news/home.dart';
-import 'package:news/LittleVideoPage.dart';
+import 'package:news/short_video.dart';
 import 'package:news/ProfilePage.dart';
 import 'package:news/TaskPage.dart';
 import 'package:news/video.dart';
@@ -63,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
   List<Widget> pages = [
     HomePage(),
     VideoPage(),
-    ShortVideoPage(),
+    ShortVideoListPage(),
     TaskPage(),
     ProfilePage()
   ];
