@@ -84,7 +84,9 @@ class _ShortVideoListPagePageState extends State<ShortVideoListPage> {
     double smallHeight = smallWidth * 326 / 580;
     print("build ${items.length}");
     return RefreshIndicator(
+
         child: GridView.builder(
+          controller: _scrollController,
           itemCount: items.length,
           gridDelegate:
               SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
