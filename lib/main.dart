@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:news/ApiService.dart';
 import 'package:news/home.dart';
 import 'package:news/short_video.dart';
-import 'package:news/ProfilePage.dart';
+import 'package:news/user_center.dart';
 import 'package:news/TaskPage.dart';
 import 'package:news/video.dart';
 
@@ -65,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
     VideoPage(),
     ShortVideoListPage(),
     TaskPage(),
-    ProfilePage()
+    UserCenterPage()
   ];
   final itemNames = [
     _Item('首页', 'assets/images/ic_tab_home_active.webp',
@@ -94,14 +94,14 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    var list = itemNames
-        .map((item) => {
-              BottomNavigationBarItem(
-                  title: Text(item.name, style: TextStyle(fontSize: 10.0)),
-                  icon: Image.asset(item.normalIcon),
-                  activeIcon: Image.asset(item.activeIcon))
-            })
-        .toList();
+//    var list = itemNames
+//        .map((item) => {
+//              BottomNavigationBarItem(
+//                  title: Text(item.name, style: TextStyle(fontSize: 10.0)),
+//                  icon: Image.asset(item.normalIcon),
+//                  activeIcon: Image.asset(item.activeIcon))
+//            })
+//        .toList();
   }
 
   void _onItemTapped(int index) {

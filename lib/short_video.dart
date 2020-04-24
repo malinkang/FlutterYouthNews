@@ -84,30 +84,26 @@ class _ShortVideoListPagePageState extends State<ShortVideoListPage> {
     double smallHeight = smallWidth * 326 / 580;
     print("build ${items.length}");
     return RefreshIndicator(
-
         child: GridView.builder(
           controller: _scrollController,
           itemCount: items.length,
-          gridDelegate:
-              SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              childAspectRatio: 720 / 1280,
+              crossAxisCount: 2,
+              crossAxisSpacing: 0.5,
+              mainAxisSpacing: 0.5),
           itemBuilder: (context, index) {
             ShortVideo video = items[index];
-             if (index == items.length - 1) {
+            if (index == items.length - 1) {
               return _loadMoreWidget();
             } else {
               return Container(
-                margin:
-                EdgeInsets.fromLTRB(0, 0, (index % 2 == 0) ? 0.5 : 0, 0.5),
-                height: 290,
-                width: double.infinity,
-                decoration: BoxDecoration(color: Color(0xff7c7c7c)),
+                decoration: BoxDecoration(color: Color(0xff7c7c7c)), //设置背景
                 child: Stack(
                   children: [
                     Image.network(
                       video.thumb_image.url,
-                      fit: BoxFit.fill,
-                      width: double.infinity,
-                      height: 290,
+                      fit: BoxFit.fitWidth,
                     ),
                     Container(
                       margin: EdgeInsets.fromLTRB(10, 0, 10, 13),
@@ -156,5 +152,4 @@ class _ShortVideoListPagePageState extends State<ShortVideoListPage> {
         ),
         onRefresh: _onRefresh);
   }
-
 }

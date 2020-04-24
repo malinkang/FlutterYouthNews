@@ -6,6 +6,8 @@ import 'package:news/bean/Category.dart';
 import 'package:news/bean/CategroyResponse.dart';
 import 'package:news/bean/ShortVideoResponse.dart';
 import 'package:news/bean/short_video.dart';
+import 'package:news/bean/user_center_model.dart';
+import 'package:news/bean/user_center_response.dart';
 
 class ApiService {
   static final ApiService _singleton = ApiService._internal();
@@ -90,6 +92,16 @@ class ApiService {
       return ShortVideoResponse.fromJson(response.data).list;
     } else {
       throw Exception('Failed to load album');
+    }
+  }
+
+  Future<List<UserCenterModel>> getUserCenter() async{
+    var response = await dio.get("v14/user/center.json");
+    if(response.statusCode==200){
+      return UserCenterResponse.fromJson(response.data).list;
+    }else{
+      throw Exception('Failed to load album');
+
     }
   }
 

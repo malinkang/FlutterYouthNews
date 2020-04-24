@@ -18,13 +18,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   TabController controller;
   Color selectColor, unselectedColor;
   TextStyle selectStyle, unselectedStyle;
-  Future<List<Category>> futureCategory;
+  Future<List<Category>> future;
 
   @override
   void initState() {
     super.initState();
-    futureCategory = ApiService().getArticleCategory();
-    print("initState");
+    future = ApiService().getArticleCategory();
     selectColor = Color(0xff262626);
     unselectedColor = Color(0xff828282);
     selectStyle = TextStyle(
@@ -39,7 +38,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     return new Padding(
         padding: new EdgeInsets.only(top: statusBarHeight),
         child: FutureBuilder<List<Category>>(
-          future: futureCategory,
+          future: future,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               List<Category> items = snapshot.data;

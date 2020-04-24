@@ -102,6 +102,7 @@ class _VideoListPageState extends State<VideoListPage> {
                         Image.network(article.thumb,
                             width: smallWidth, height: smallHeight),
                         Container(
+                          //标题
                           width: double.infinity,
                           decoration: BoxDecoration(
                             image: DecorationImage(
@@ -122,15 +123,11 @@ class _VideoListPageState extends State<VideoListPage> {
                           ),
                         ),
                         Positioned.fill(
-                            child: Align(
-                          alignment: Alignment.center,
-                          child: Image.asset("assets/images/video_icon.webp"),
-                        )),
-                        Positioned.fill(
-                            child: Align(
-                          alignment: Alignment.bottomRight,
+                            child: Image.asset("assets/images/video_icon.webp")),
+                        Positioned(
+                          right: 10,
+                          bottom: 10,
                           child: Container(
-                            margin: EdgeInsets.fromLTRB(0, 0, 10, 10),
                             padding: EdgeInsets.fromLTRB(8, 2, 8, 2),
                             decoration: BoxDecoration(
                                 color: Color(0xff000000),
@@ -142,11 +139,11 @@ class _VideoListPageState extends State<VideoListPage> {
                                   TextStyle(fontSize: 12, color: Colors.white),
                             ),
                           ),
-                        ))
+                        ),
                       ],
                     ),
                     Padding(
-                      padding: EdgeInsets.fromLTRB(15,10,15,10),
+                      padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -169,7 +166,8 @@ class _VideoListPageState extends State<VideoListPage> {
                               Image.asset("assets/images/comments_icon.webp"),
                               Container(
                                 margin: EdgeInsets.only(left: 30),
-                                child: Image.asset("assets/images/video_more_icon.webp"),
+                                child: Image.asset(
+                                    "assets/images/video_more_icon.webp"),
                               )
                             ],
                           )
