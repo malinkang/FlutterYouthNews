@@ -46,14 +46,9 @@ class _VideoPageState extends State<VideoPage> with TickerProviderStateMixin {
               return Stack(
                 children: <Widget>[
                   Padding(
-                    padding: EdgeInsets.only(top: 25),
-                    child: Divider(
-                      color: Color(0xFFDDDDDD),
-                      height: 0.5,
-                    ),
+                    padding: EdgeInsets.only(top: 25)
                   ),
                   Column(
-                    mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       TabBar(
                           indicatorWeight: 2,
@@ -67,10 +62,7 @@ class _VideoPageState extends State<VideoPage> with TickerProviderStateMixin {
                           indicatorSize: TabBarIndicatorSize.label,
                           controller: controller,
                           tabs: items.map((item) {
-                            return Padding(
-                              padding: EdgeInsets.only(bottom: 2),
-                              child: Text(item.name),
-                            );
+                            return Text(item.name);
                           }).toList()),
                       Expanded(
                         child: TabBarView(
