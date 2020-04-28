@@ -5,7 +5,7 @@ import 'package:news/bean/article.dart';
 import 'article_detail.dart';
 
 class ArticleListPage extends StatefulWidget {
-  String id; //分类id
+  final String id; //分类id
   ArticleListPage({this.id});
 
   @override
@@ -152,7 +152,7 @@ class _ArticleListPageState extends State<ArticleListPage> {
                     onTap: () => {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => FeedDetailPage(
-                              title: article.title, selectedUrl: article.url))),
+                           article: article))),
                     },
                   );
                 } else if (article.image_type == '1') {
@@ -227,8 +227,7 @@ class _ArticleListPageState extends State<ArticleListPage> {
                       onTap: () => {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => FeedDetailPage(
-                                title: article.title,
-                                selectedUrl: article.url))),
+                               article: article,))),
                       });
                 } else if (article.image_type == '2') {
                   //多图
@@ -297,8 +296,7 @@ class _ArticleListPageState extends State<ArticleListPage> {
                       onTap: () => {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => FeedDetailPage(
-                                title: article.title,
-                                selectedUrl: article.url))),
+                                article: article,))),
                       });
                 } else {
                   //大图
@@ -322,8 +320,7 @@ class _ArticleListPageState extends State<ArticleListPage> {
                       onTap: () => {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => FeedDetailPage(
-                                title: article.title,
-                                selectedUrl: article.url))),
+                                article: article,))),
                       });
                 }
               }

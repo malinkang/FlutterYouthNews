@@ -4,10 +4,9 @@ import 'package:news/api.dart';
 import 'package:news/bean/article.dart';
 import 'package:news/video_detail.dart';
 
-import 'article_detail.dart';
-
+///视频列表页
 class VideoListPage extends StatefulWidget {
-  String id; //分类id
+  final String id; //分类id
   VideoListPage({this.id});
 
   @override
@@ -201,7 +200,7 @@ class _VideoListPageState extends State<VideoListPage> {
                     ),
                     onTap: () => {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => VideoPlayerScreen(article: article))),
+                          builder: (context) => VideoDetailPage(article: article))),
                     },
                   );
                 }

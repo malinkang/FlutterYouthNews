@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:news/api.dart';
-import 'package:news/home.dart';
+import 'package:news/article.dart';
 import 'package:news/short_video.dart';
 import 'package:news/user_center.dart';
 import 'package:news/task_center.dart';
@@ -22,18 +22,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.green,
-      ),
+          primarySwatch: Colors.green,
+          ///https://stackoverflow.com/questions/49894406/how-to-implement-swipe-to-previous-page-in-flutter
+          ///滑动关闭页面
+          pageTransitionsTheme: PageTransitionsTheme(builders: {
+            TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+            TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+          })),
       home: MyHomePage(),
     );
   }
@@ -61,7 +56,7 @@ class _Item {
 
 class _MyHomePageState extends State<MyHomePage> {
   List<Widget> pages = [
-    HomePage(),
+    ArticlePage(),
     VideoPage(),
     ShortVideoListPage(),
     TaskPage(),
@@ -110,15 +105,20 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
+    final double statusBarHeight = MediaQuery.of(context).padding.top;
+
     return Scaffold(
-      body: Stack(
-        children: <Widget>[
-          getPagesWidget(0),
-          getPagesWidget(1),
-          getPagesWidget(2),
-          getPagesWidget(3),
-          getPagesWidget(4),
-        ],
+      body: Padding(
+        padding: EdgeInsets.only(top: statusBarHeight),
+        child: Stack(
+          children: <Widget>[
+            getPagesWidget(0),
+            getPagesWidget(1),
+            getPagesWidget(2),
+            getPagesWidget(3),
+            getPagesWidget(4),
+          ],
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: itemNames

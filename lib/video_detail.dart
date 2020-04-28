@@ -5,23 +5,23 @@ import 'package:video_player/video_player.dart';
 
 import 'api.dart';
 
-class VideoPlayerScreen extends StatefulWidget {
+class VideoDetailPage extends StatefulWidget {
   final Article article;
 
-  VideoPlayerScreen({@required this.article});
+  VideoDetailPage({@required this.article});
 
   @override
-  _VideoPlayerScreenState createState() =>
-      _VideoPlayerScreenState(article: article);
+  _VideoDetailPageState createState() =>
+      _VideoDetailPageState(article: article);
 }
 
-class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
+class _VideoDetailPageState extends State<VideoDetailPage> {
   VideoPlayerController _controller;
   ChewieController _chewieController;
   List<Article> articles = new List();
   Article article;
 
-  _VideoPlayerScreenState({this.article});
+  _VideoDetailPageState({this.article});
 
   Future<dynamic> getRelateArticle() {
     articles.clear();
@@ -73,9 +73,8 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
       autoPlay: true,
       looping: true,
     );
-    return Container(
-      color: Colors.white,
-      child: CustomScrollView(
+    return Scaffold(
+      body: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
             child: Chewie(
@@ -153,7 +152,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                   onTap: () => {
                     Navigator.of(context).pushReplacement(MaterialPageRoute(
                         builder: (context) =>
-                            VideoPlayerScreen(article: article))),
+                            VideoDetailPage(article: article))),
                   });
             }, childCount: articles.length),
           )

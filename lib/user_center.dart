@@ -28,120 +28,117 @@ class _UserCenterPageState extends State<UserCenterPage> {
 
   @override
   Widget build(BuildContext context) {
-    final double statusBarHeight = MediaQuery.of(context).padding.top;
     double height = (MediaQuery.of(context).size.width - 30) / 720 * 120;
-    return Padding(
-      padding: EdgeInsets.fromLTRB(15, statusBarHeight, 15, 0),
-      child: FutureBuilder<List<UserCenterModel>>(
-        future: future,
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            List<UserCenterModel> models = snapshot.data;
-            models.forEach((model) {
-              var data = model.item_data;
-              if (model.item_type == "header") {
-                items.add(SliverGrid(
-                    delegate: SliverChildBuilderDelegate((context, index) {
-                      var item = model.item_data[index];
-                      return Stack(
-                        children: [
-                          Positioned.fill(
-                              child: Align(
-                            alignment: Alignment.center,
-                            child: Column(
-                              children: [
-                                Image.network(item.image,
-                                    width: 40, height: 40),
-                                Padding(
-                                  padding: EdgeInsets.only(top: 10),
-                                  child: Text(
-                                    item.name,
-                                    style: TextStyle(
-                                        color: Color(0xff999999), fontSize: 12),
-                                  ),
-                                )
-                              ],
-                            ),
-                          )),
-                        ],
-                      );
-                    }, childCount: model.item_data.length),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 4,
-                    )));
-              } else if (model.item_type == "banner") {
-                PageController controller = PageController();
-                items.add(SliverToBoxAdapter(
-                  child: Container(
-                    height: height,
-                    child: Stack(
+    return FutureBuilder<List<UserCenterModel>>(
+      future: future,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          List<UserCenterModel> models = snapshot.data;
+          models.forEach((model) {
+            var data = model.item_data;
+            if (model.item_type == "header") {
+              items.add(SliverGrid(
+                  delegate: SliverChildBuilderDelegate((context, index) {
+                    var item = model.item_data[index];
+                    return Stack(
                       children: [
-                        PageView.builder(
-                          controller: controller,
-                          scrollDirection: Axis.horizontal,
+                        Positioned.fill(
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: Column(
+                                children: [
+                                  Image.network(item.image,
+                                      width: 40, height: 40),
+                                  Padding(
+                                    padding: EdgeInsets.only(top: 10),
+                                    child: Text(
+                                      item.name,
+                                      style: TextStyle(
+                                          color: Color(0xff999999), fontSize: 12),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            )),
+                      ],
+                    );
+                  }, childCount: model.item_data.length),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 4,
+                  )));
+            } else if (model.item_type == "banner") {
+              PageController controller = PageController();
+              items.add(SliverToBoxAdapter(
+                child: Container(
+                  height: height,
+                  child: Stack(
+                    children: [
+                      PageView.builder(
+                        controller: controller,
+                        scrollDirection: Axis.horizontal,
+                        itemCount: data.length,
+                        itemBuilder: (context, index) {
+                          var item = data[index];
+                          return Image.network(
+                            item.image,
+                            fit: BoxFit.cover,
+                          );
+                        },
+                      ),
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: DotsIndicator(
                           itemCount: data.length,
-                          itemBuilder: (context, index) {
-                            var item = data[index];
-                            return Image.network(
-                              item.image,
-                              fit: BoxFit.cover,
+                          controller: controller,
+                          onPageSelected: (int page) {
+                            controller.animateToPage(
+                              page,
+                              duration: _kDuration,
+                              curve: _kCurve,
                             );
                           },
                         ),
-                        Align(
-                          alignment: Alignment.bottomCenter,
-                          child: DotsIndicator(
-                            itemCount: data.length,
-                            controller: controller,
-                            onPageSelected: (int page) {
-                              controller.animateToPage(
-                                page,
-                                duration: _kDuration,
-                                curve: _kCurve,
-                              );
-                            },
-                          ),
-                        )
-                      ],
-                    ),
+                      )
+                    ],
                   ),
-                ));
-              } else if (model.item_type == "app") {
-                items.add(SliverGrid(
-                    delegate: SliverChildBuilderDelegate((context, index) {
-                      var item = model.item_data[index];
-                      return Container(
-                        child:  Stack(
-                          children: [
-                            Positioned.fill(
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: Column(
-                                    children: [
-                                      Image.network(item.image,
-                                          width: 40, height: 40),
-                                      Padding(
-                                        padding: EdgeInsets.only(top: 10),
-                                        child: Text(
-                                          item.name,
-                                          style: TextStyle(
-                                              color: Color(0xff999999), fontSize: 12),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                )),
-                          ],
-                        ),
-                      );
-                    }, childCount: model.item_data.length),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 4,
-                    )));
-              } else if (model.item_type == "system") {
-                items.add(SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                      (BuildContext context, int index) {
+                ),
+              ));
+            } else if (model.item_type == "app") {
+              items.add(SliverGrid(
+                  delegate: SliverChildBuilderDelegate((context, index) {
+                    var item = model.item_data[index];
+                    return Container(
+                      child:  Stack(
+                        children: [
+                          Positioned.fill(
+                              child: Align(
+                                alignment: Alignment.center,
+                                child: Column(
+                                  children: [
+                                    Image.network(item.image,
+                                        width: 40, height: 40),
+                                    Padding(
+                                      padding: EdgeInsets.only(top: 10),
+                                      child: Text(
+                                        item.name,
+                                        style: TextStyle(
+                                            color: Color(0xff999999), fontSize: 12),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              )),
+                        ],
+                      ),
+                    );
+                  }, childCount: model.item_data.length),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 4,
+                  )));
+            } else if (model.item_type == "system") {
+              items.add(SliverList(
+                delegate: SliverChildBuilderDelegate(
+                        (BuildContext context, int index) {
                       var item=  data[index];
                       Radius top;
                       Radius bottom;
@@ -155,62 +152,61 @@ class _UserCenterPageState extends State<UserCenterPage> {
                         top = Radius.circular(0);
                         bottom = Radius.circular(0);
                       }
-                    return Container(
-                      height: 48.5,
-                      padding: EdgeInsets.symmetric(horizontal: 15),
-                      decoration: new BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.vertical(top: top,bottom: bottom),
-                        boxShadow: [
-                          BoxShadow(
-                            offset: Offset(0.0, 5),
-                            color: Color(0xffEDEDED),
-                            blurRadius: 5.0,
-                          )
-                        ]
-                      ),
-                      width: double.infinity,
-                      child: Column(
-                        children: [
-                          Container(
-                            height: 48,
-                            width: double.infinity,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text(item.name,style: TextStyle(color: Color(0xff333333),fontSize: 15),),
-                                Row(
-                                  children: [
-                                    Text(item.desc==null?"":item.desc,style: TextStyle(fontSize: 12),),
-                                    Padding(
-                                      padding: EdgeInsets.only(left: 5),
-                                      child: Image.asset("assets/images/ic_right_arrow.webp"),
-                                    )
-                                  ],
-                                )
-                              ],
+                      return Container(
+                        height: 48.5,
+                        padding: EdgeInsets.symmetric(horizontal: 15),
+                        decoration: new BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.vertical(top: top,bottom: bottom),
+                            boxShadow: [
+                              BoxShadow(
+                                offset: Offset(0.0, 5),
+                                color: Color(0xffEDEDED),
+                                blurRadius: 5.0,
+                              )
+                            ]
+                        ),
+                        width: double.infinity,
+                        child: Column(
+                          children: [
+                            Container(
+                              height: 48,
+                              width: double.infinity,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(item.name,style: TextStyle(color: Color(0xff333333),fontSize: 15),),
+                                  Row(
+                                    children: [
+                                      Text(item.desc==null?"":item.desc,style: TextStyle(fontSize: 12),),
+                                      Padding(
+                                        padding: EdgeInsets.only(left: 5),
+                                        child: Image.asset("assets/images/ic_right_arrow.webp"),
+                                      )
+                                    ],
+                                  )
+                                ],
+                              ),
                             ),
-                          ),
-                          Divider(height: 0.5,color: Color(0xFFEFF0F2),)
-                        ],
-                      ),
-                    );
-                  }, childCount: data.length),
-                ));
-              }
-            });
+                            Divider(height: 0.5,color: Color(0xFFEFF0F2),)
+                          ],
+                        ),
+                      );
+                    }, childCount: data.length),
+              ));
+            }
+          });
 
-            return CustomScrollView(
-              slivers: items,
-            );
-          } else if (snapshot.hasError) {
-            return Text("${snapshot.error}");
-          } else {
-            return CircularProgressIndicator();
-          }
-        },
-      ),
+          return CustomScrollView(
+            slivers: items,
+          );
+        } else if (snapshot.hasError) {
+          return Text("${snapshot.error}");
+        } else {
+          return CircularProgressIndicator();
+        }
+      },
     );
   }
 }

@@ -80,11 +80,8 @@ class _ShortVideoListPagePageState extends State<ShortVideoListPage> {
 
   @override
   Widget build(BuildContext context) {
-    double smallWidth = MediaQuery.of(context).size.width;
-    double smallHeight = smallWidth * 326 / 580;
-    print("build ${items.length}");
     return RefreshIndicator(
-        child: GridView.builder(
+        child: MediaQuery.removeViewPadding(context: context,removeTop: true, child: GridView.builder(
           controller: _scrollController,
           itemCount: items.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -149,7 +146,7 @@ class _ShortVideoListPagePageState extends State<ShortVideoListPage> {
               );
             }
           },
-        ),
+        )),
         onRefresh: _onRefresh);
   }
 }
