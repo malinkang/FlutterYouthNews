@@ -1,4 +1,4 @@
-import 'package:news/bean/Article.dart';
+import 'package:news/bean/article.dart';
 import 'package:news/bean/short_video.dart';
 
 class ShortVideoResponse {

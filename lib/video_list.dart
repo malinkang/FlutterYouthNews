@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:news/api.dart';
-import 'package:news/bean/Article.dart';
+import 'package:news/bean/article.dart';
 import 'package:news/video_detail.dart';
 
-import 'FeedDetailPage.dart';
+import 'article_detail.dart';
 
 class VideoListPage extends StatefulWidget {
   String id; //分类id

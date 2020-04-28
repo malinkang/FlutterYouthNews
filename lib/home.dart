@@ -12,8 +12,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
-//  List<Category> items = List<Category>();
-//  final List<String> list = ['影评', '话题', '讨论'];
 
   TabController controller;
   Color selectColor, unselectedColor;
@@ -42,45 +40,33 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               List<Category> items = snapshot.data;
-
               controller = TabController(length: items.length, vsync: this);
-              return Stack(
+              return  Column(
+                mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.only(top: 25),
-                    child: Divider(
-                      color: Color(0xFFDDDDDD),
-                      height: 0.5,
-                    ),
-                  ),
-                  Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      TabBar(
-                          indicatorWeight: 2,
-                          isScrollable: true,
-                          labelPadding: EdgeInsets.symmetric(horizontal: 10),
-                          indicatorColor: Color(0xff31c27c),
-                          labelColor: selectColor,
-                          labelStyle: selectStyle,
-                          unselectedLabelColor: unselectedColor,
-                          unselectedLabelStyle: unselectedStyle,
-                          indicatorSize: TabBarIndicatorSize.label,
-                          controller: controller,
-                          tabs: items.map((item) {
-                            return Padding(
-                              padding: EdgeInsets.only(bottom: 2),
-                              child: Text(item.name),
-                            );
-                          }).toList()),
-                      Expanded(
-                        child: TabBarView(
-                            controller: controller,
-                            children: items.map((item) {
-                              return ArticleListPage(id: item.id);
-                            }).toList()),
-                      ),
-                    ],
+                  TabBar(
+                      indicatorWeight: 2,
+                      isScrollable: true,
+                      labelPadding: EdgeInsets.symmetric(horizontal: 10),
+                      indicatorColor: Color(0xff31c27c),
+                      labelColor: selectColor,
+                      labelStyle: selectStyle,
+                      unselectedLabelColor: unselectedColor,
+                      unselectedLabelStyle: unselectedStyle,
+                      indicatorSize: TabBarIndicatorSize.label,
+                      controller: controller,
+                      tabs: items.map((item) {
+                        return Padding(
+                          padding: EdgeInsets.only(bottom: 2),
+                          child: Text(item.name),
+                        );
+                      }).toList()),
+                  Expanded(
+                    child: TabBarView(
+                        controller: controller,
+                        children: items.map((item) {
+                          return ArticleListPage(id: item.id);
+                        }).toList()),
                   ),
                 ],
               );

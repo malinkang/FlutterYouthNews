@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:news/api.dart';
-import 'package:news/bean/Article.dart';
+import 'package:news/bean/article.dart';
 import 'package:news/bean/short_video.dart';
 
-import 'FeedDetailPage.dart';
+import 'article_detail.dart';
 
 class ShortVideoListPage extends StatefulWidget {
   String id; //分类id

@@ -1,4 +1,4 @@
-import 'package:news/bean/Article.dart';
+import 'package:news/bean/article.dart';
 
 class ArticleResponse {
  bool success;

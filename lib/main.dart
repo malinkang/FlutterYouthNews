@@ -4,7 +4,7 @@ import 'package:news/api.dart';
 import 'package:news/home.dart';
 import 'package:news/short_video.dart';
 import 'package:news/user_center.dart';
-import 'package:news/TaskPage.dart';
+import 'package:news/task_center.dart';
 import 'package:news/video.dart';
 
 void main() {
@@ -94,14 +94,6 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-//    var list = itemNames
-//        .map((item) => {
-//              BottomNavigationBarItem(
-//                  title: Text(item.name, style: TextStyle(fontSize: 10.0)),
-//                  icon: Image.asset(item.normalIcon),
-//                  activeIcon: Image.asset(item.activeIcon))
-//            })
-//        .toList();
   }
 
   void _onItemTapped(int index) {

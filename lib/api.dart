@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:news/CustomInterceptor.dart';
-import 'package:news/bean/Article.dart';
+import 'package:news/bean/article.dart';
 import 'package:news/bean/ArticleResponse.dart';
 import 'package:news/bean/Category.dart';
 import 'package:news/bean/CategroyResponse.dart';

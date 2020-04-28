@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:news/api.dart';
-import 'package:news/bean/Article.dart';
+import 'package:news/bean/article.dart';
 
-import 'FeedDetailPage.dart';
+import 'article_detail.dart';
 
 class ArticleListPage extends StatefulWidget {
   String id; //分类id
@@ -21,6 +21,7 @@ class _ArticleListPageState extends State<ArticleListPage> {
   List<Article> items = List<Article>();
   String id; //
   Future<List<Article>> futureArticle;
+  bool isLoadingMore = false; //加载更多
 
   _ArticleListPageState({this.id});
 
@@ -72,13 +73,20 @@ class _ArticleListPageState extends State<ArticleListPage> {
   }
 
   Future<dynamic> _onLoadmore() {
-    return ApiService()
-        .getArticle(id, 0, "-1", "-1", "-1", "1453")
-        .then((data) {
-      setState(() {
-        this.items.addAll(data);
+    setState(() {
+      isLoadingMore = true;
+    });
+    Future.delayed(const Duration(milliseconds: 500), () {
+      ApiService()
+          .getArticle(id, 0, "-1", "-1", "-1", "1453")
+          .then((data) {
+        setState(() {
+          this.items.addAll(data);
+          isLoadingMore = false;
+        });
       });
     });
+
   }
 
   @override
@@ -89,11 +97,11 @@ class _ArticleListPageState extends State<ArticleListPage> {
     return Container(
       padding: EdgeInsets.fromLTRB(15, 0, 15, 0), //设置两边边距
       child: RefreshIndicator(
-          child: ListView.separated(
+          child: MediaQuery.removePadding(context: context,removeTop: true, child: ListView.separated(
             controller: _scrollController,
-            itemCount: items.length,
+            itemCount: isLoadingMore ? (items.length + 1) : items.length,
             itemBuilder: (context, index) {
-              if (index == items.length - 1) {
+              if (index == items.length) {
                 return _loadMoreWidget();
               } else {
                 Article article = items[index];
@@ -160,7 +168,7 @@ class _ArticleListPageState extends State<ArticleListPage> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  MainAxisAlignment.spaceBetween,
                                   children: <Widget>[
                                     Text(
                                       article.title,
@@ -174,7 +182,7 @@ class _ArticleListPageState extends State<ArticleListPage> {
                                       margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
                                       child: Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                        MainAxisAlignment.spaceBetween,
                                         children: <Widget>[
                                           Row(
                                             children: <Widget>[
@@ -189,7 +197,7 @@ class _ArticleListPageState extends State<ArticleListPage> {
                                                     "${article.read_num}阅读",
                                                     style: TextStyle(
                                                         color:
-                                                            Color(0xffc0c0c0),
+                                                        Color(0xffc0c0c0),
                                                         fontSize: 10)),
                                               )
                                             ],
@@ -217,11 +225,11 @@ class _ArticleListPageState extends State<ArticleListPage> {
                         ),
                       ),
                       onTap: () => {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => FeedDetailPage(
-                                    title: article.title,
-                                    selectedUrl: article.url))),
-                          });
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => FeedDetailPage(
+                                title: article.title,
+                                selectedUrl: article.url))),
+                      });
                 } else if (article.image_type == '2') {
                   //多图
                   return GestureDetector(
@@ -243,7 +251,7 @@ class _ArticleListPageState extends State<ArticleListPage> {
                               margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
                               child: Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
                                   Image.network(article.extra[0],
                                       width: smallWidth, height: smallHeight),
@@ -258,7 +266,7 @@ class _ArticleListPageState extends State<ArticleListPage> {
                               margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
                               child: Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
                                   Row(
                                     children: <Widget>[
@@ -268,7 +276,7 @@ class _ArticleListPageState extends State<ArticleListPage> {
                                               fontSize: 10)),
                                       Container(
                                         margin:
-                                            EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                        EdgeInsets.fromLTRB(10, 0, 0, 0),
                                         child: Text("${article.read_num}阅读",
                                             style: TextStyle(
                                                 color: Color(0xffc0c0c0),
@@ -287,11 +295,11 @@ class _ArticleListPageState extends State<ArticleListPage> {
                         ),
                       ),
                       onTap: () => {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => FeedDetailPage(
-                                    title: article.title,
-                                    selectedUrl: article.url))),
-                          });
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => FeedDetailPage(
+                                title: article.title,
+                                selectedUrl: article.url))),
+                      });
                 } else {
                   //大图
                   return GestureDetector(
@@ -312,11 +320,11 @@ class _ArticleListPageState extends State<ArticleListPage> {
                         ),
                       ),
                       onTap: () => {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => FeedDetailPage(
-                                    title: article.title,
-                                    selectedUrl: article.url))),
-                          });
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => FeedDetailPage(
+                                title: article.title,
+                                selectedUrl: article.url))),
+                      });
                 }
               }
             },
@@ -326,7 +334,7 @@ class _ArticleListPageState extends State<ArticleListPage> {
                 height: 0.5,
               );
             },
-          ),
+          )),
           onRefresh: _onRefresh),
     );
   }
