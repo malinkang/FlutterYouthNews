@@ -2,7 +2,7 @@ import 'package:news/bean/Article.dart';
 
 class ArticleResponse {
  bool success;
- String errorCode;
+ int errorCode;
  String message;
 
   List<Article> list;
@@ -15,7 +15,7 @@ class ArticleResponse {
     ).toList();
     return ArticleResponse(
         success:json['success'],
-        errorCode:json['error_code'],
+        errorCode:(json['error_code'] is int)?json['error_code']:int.parse(json['error_code']),
         message:json['message'],
         list:articles);
   }

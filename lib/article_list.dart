@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news/ApiService.dart';
+import 'package:news/api.dart';
 import 'package:news/bean/Article.dart';
 
 import 'FeedDetailPage.dart';

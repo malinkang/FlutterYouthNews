@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:news/ApiService.dart';
+import 'package:news/api.dart';
 import 'package:news/home.dart';
 import 'package:news/short_video.dart';
 import 'package:news/user_center.dart';

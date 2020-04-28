@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:news/ApiService.dart';
+import 'package:news/api.dart';
 import 'package:news/bean/user_center_model.dart';
 
 class UserCenterPage extends StatefulWidget {

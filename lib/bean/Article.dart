@@ -34,6 +34,8 @@ class Article {
   String wurl;
   String video_time;
   String video_play_url;
+  int video_width;
+  int video_height;
 
   Article(
       {this.account_id,
@@ -70,7 +72,9 @@ class Article {
       this.url,
       this.wurl,
       this.video_time,
-      this.video_play_url});
+      this.video_play_url,
+      this.video_width,
+      this.video_height});
 
   factory Article.fromJson(Map<String, dynamic> json) {
     return Article(
@@ -91,7 +95,7 @@ class Article {
       extra_data: json['extra_data'] != null
           ? ExtraData.fromJson(json['extra_data'])
           : null,
-      id: json['id'],
+      id: (json['id'] is String) ? json['id'] : json['id'].toString(),
       image_type: json['image_type'] is String
           ? json['image_type']
           : json['image_type'].toString(),
@@ -117,6 +121,16 @@ class Article {
       wurl: json['wurl'],
       video_time: json['video_time'],
       video_play_url: json['video_play_url'],
+      video_width: json['video_width'] == null
+          ? 0
+          : ((json['video_width'] is int)
+              ? json['video_width']
+              : int.parse(json['video_width'])),
+      video_height: json['video_height'] == null
+          ? 0
+          : ((json['video_height'] is int)
+              ? json['video_height']
+              : int.parse(json['video_height'])),
     );
   }
 }

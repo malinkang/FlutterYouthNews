@@ -95,13 +95,27 @@ class ApiService {
     }
   }
 
+  Future<List<Article>>  getRelateArticle(String id) async {
+    FormData formData = FormData.fromMap(
+        {
+          'id':id
+        }
+    );
+    var response =
+    await dio2.post("v16/api/content/video/relate", data: formData);
+    if (response.statusCode == 200) {
+      return ArticleResponse.fromJson(response.data).list;
+    } else {
+      throw Exception('Failed to load album');
+    }
+  }
+
   Future<List<UserCenterModel>> getUserCenter() async{
     var response = await dio.get("v14/user/center.json");
     if(response.statusCode==200){
       return UserCenterResponse.fromJson(response.data).list;
     }else{
       throw Exception('Failed to load album');
-
     }
   }
 
