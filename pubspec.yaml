@@ -21,8 +21,8 @@ dependencies:
     sdk: flutter
   video_player: ^0.10.0+2
   chewie: ^0.9.10
-
-
+  device_info: 0.4.2+2
+  shared_preferences: 0.5.7
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
@@ -34,7 +34,6 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -67,6 +66,11 @@ flutter:
     - assets/images/user_prompt.png
     - assets/images/ic_right_arrow.webp
     - assets/images/ic_article_back.png
+    - assets/images/thanos_icon_share_new_ui_normal.png
+    - assets/images/thanos_icon_comment_new_ui_normal.png
+    - assets/images/thanos_icon_like_new_ui_normal.png
+    - assets/images/thanos_icon_like_new_ui_selected.webp
+    - assets/images/ic_short_video_comment.webp
 
   # To add assets to your application, add an assets section, like this:
   # assets:

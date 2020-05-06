@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
-import 'package:news/CustomInterceptor.dart';
+import 'package:news/pages/custom_interceptor.dart';
 import 'package:news/bean/article.dart';
-import 'package:news/bean/ArticleResponse.dart';
-import 'package:news/bean/Category.dart';
-import 'package:news/bean/CategroyResponse.dart';
-import 'package:news/bean/ShortVideoResponse.dart';
+import 'package:news/bean/article_response.dart';
+import 'package:news/bean/category.dart';
+import 'package:news/bean/category_response.dart';
+import 'package:news/bean/short_video_response.dart';
 import 'package:news/bean/short_video.dart';
 import 'package:news/bean/user_center_model.dart';
 import 'package:news/bean/user_center_response.dart';

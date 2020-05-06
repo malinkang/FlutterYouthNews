@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news/api.dart';
-import 'package:news/article_list.dart';
-import 'package:news/bean/Category.dart';
-import 'package:news/video_list.dart';
+import 'package:news/bean/category.dart';
+import 'package:news/pages/video_list.dart';
 
 ///首页
 class VideoPage extends StatefulWidget {

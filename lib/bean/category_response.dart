@@ -1,4 +1,4 @@
-import 'package:news/bean/Category.dart';
+import 'package:news/bean/category.dart';
 
 class CategroyResponse {
  bool success;

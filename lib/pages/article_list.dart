@@ -4,6 +4,7 @@ import 'package:news/bean/article.dart';
 
 import 'article_detail.dart';
 
+
 class ArticleListPage extends StatefulWidget {
   final String id; //分类id
   ArticleListPage({this.id});
@@ -151,7 +152,7 @@ class _ArticleListPageState extends State<ArticleListPage> {
                     ),
                     onTap: () => {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => FeedDetailPage(
+                          builder: (context) => ArticleDetailPage(
                            article: article))),
                     },
                   );
@@ -226,7 +227,7 @@ class _ArticleListPageState extends State<ArticleListPage> {
                       ),
                       onTap: () => {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => FeedDetailPage(
+                            builder: (context) => ArticleDetailPage(
                                article: article,))),
                       });
                 } else if (article.image_type == '2') {
@@ -295,7 +296,7 @@ class _ArticleListPageState extends State<ArticleListPage> {
                       ),
                       onTap: () => {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => FeedDetailPage(
+                            builder: (context) => ArticleDetailPage(
                                 article: article,))),
                       });
                 } else {
@@ -319,7 +320,7 @@ class _ArticleListPageState extends State<ArticleListPage> {
                       ),
                       onTap: () => {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => FeedDetailPage(
+                            builder: (context) => ArticleDetailPage(
                                 article: article,))),
                       });
                 }

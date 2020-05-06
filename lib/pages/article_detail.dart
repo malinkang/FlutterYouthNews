@@ -7,13 +7,13 @@ import 'package:webview_flutter/webview_flutter.dart';
 ///CustomScrollView嵌套WebView Bug 所以不能使用CustomScrollView，也无法嵌套listview
 ///相关推荐和评论后续再做
 ///https://github.com/flutter/flutter/issues/31243
-class FeedDetailPage extends StatelessWidget {
+class ArticleDetailPage extends StatelessWidget {
   final Article article;
 
   final Completer<WebViewController> _controller =
       Completer<WebViewController>();
 
-  FeedDetailPage({
+  ArticleDetailPage({
     @required this.article,
   });
 

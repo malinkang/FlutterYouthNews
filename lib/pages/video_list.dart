@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:news/api.dart';
 import 'package:news/bean/article.dart';
-import 'package:news/video_detail.dart';
+import 'package:news/pages/video_detail.dart';
 
 ///视频列表页
 class VideoListPage extends StatefulWidget {

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:news/api.dart';
-import 'package:news/article.dart';
-import 'package:news/short_video.dart';
-import 'package:news/user_center.dart';
-import 'package:news/task_center.dart';
-import 'package:news/video.dart';
+import 'package:news/pages/article.dart';
+import 'package:news/pages/short_video.dart';
+import 'package:news/pages/user_center.dart';
+import 'package:news/pages/task_center.dart';
+import 'package:news/pages/video.dart';
 
 void main() {
   runApp(MyApp());
@@ -85,6 +84,8 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+
+
 
   @override
   void initState() {

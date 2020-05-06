@@ -103,7 +103,7 @@ class CustomInterceptor extends InterceptorsWrapper {
       "phone_code": "3c3a549437668410",
       "phone_network": "WIFI",
       "phone_sim": "1",
-      "request_time": "1586779268",
+      "request_time": getCurrentTime(),
       "sm_device_id":
           "2020011515073584461e7117e6c2d936d1d76d5e4e45d7014f38b48970841b",
       "szlm_ddid":
@@ -140,7 +140,7 @@ class CustomInterceptor extends InterceptorsWrapper {
       "os_api": "29",
       "os_version": "ONEPLUS A6000_22_200324",
       "phone_sim": "1",
-      "request_time": "1586778988",
+      "request_time": getCurrentTime(),
       "sm_device_id":
           "2020011515073584461e7117e6c2d936d1d76d5e4e45d7014f38b48970841b",
       "szlm_ddid":
@@ -168,7 +168,7 @@ class CustomInterceptor extends InterceptorsWrapper {
       "net_type": "1",
       "oaid":
           "B361C81DCCE66A1760C066D84A5FD20FF58745074EEFB749C4919ED60ADFC8C8",
-      "request_time": "1586778988",
+      "request_time": getCurrentTime(),
       "sm_device_id":
           "2020011515073584461e7117e6c2d936d1d76d5e4e45d7014f38b48970841b",
       "szlm_ddid":
@@ -205,7 +205,7 @@ class CustomInterceptor extends InterceptorsWrapper {
       "openudid": "3c3a549437668410",
       "os_api": "29",
       "os_version": "ONEPLUS A6000_22_200324",
-      "request_time": "1587622057",
+      "request_time":getCurrentTime(),
       "resolution": "1080.0x2075.0",
       "sim": "1",
       "sm_device_id":
@@ -256,5 +256,9 @@ class CustomInterceptor extends InterceptorsWrapper {
           "MDAwMDAwMDAwMJCMpN-w09Wtg5-Bb36eh6CPqHualIejlq-FsWOwzZdrhIyp4LDPyGl9onqkj3ZqYJa8Y898najWsJupY7Knl2mFjJybr9-uapqGcXY",
       "zqkey_id": "89ed2061ddd3d6707529ef2b5673fdfb"
     };
+  }
+
+  int getCurrentTime(){
+    return (DateTime.now().millisecondsSinceEpoch/1000).round();
   }
 }

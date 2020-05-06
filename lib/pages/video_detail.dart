@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:news/bean/article.dart';
 import 'package:video_player/video_player.dart';
 
-import 'api.dart';
+import '../api.dart';
 
 class VideoDetailPage extends StatefulWidget {
   final Article article;
